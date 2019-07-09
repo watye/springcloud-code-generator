@@ -1,0 +1,9 @@
+package ${package}.feign.web.fallback;
+
+import org.springframework.stereotype.Service;
+
+import ${package}.feign.web.${moduleName}WebService;
+
+@Service
+public class ${moduleName}WebFallback implements ${moduleName}WebService {
+}

@@ -1,0 +1,20 @@
+package ${package}.web.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.talelife.framework.mapper.CrudMapper;
+import ${package}.dao.${className}Mapper;
+import ${package}.dao.entity.${className};
+import ${package}.web.service.${className}WebService;
+
+@Service
+public class ${className}WebServiceImpl implements ${className}WebService {
+	@Autowired
+	private ${className}Mapper mapper;
+
+	@Override
+	public CrudMapper<${className}> getDao() {
+		return this.mapper;
+	}
+}

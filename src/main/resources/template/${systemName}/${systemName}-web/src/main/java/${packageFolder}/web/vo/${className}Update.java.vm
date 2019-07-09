@@ -1,0 +1,56 @@
+package ${package}.web.vo;
+
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+import java.io.Serializable;
+import java.util.Date;
+
+import io.swagger.annotations.ApiModelProperty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public class ${className}Update implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+#foreach ($column in $columns)
+	/**
+	 * $column.comments
+	 */
+#if($column.nullable == 'NO')
+	#if(${column.attrType} == 'Integer' or ${column.attrType} == 'Long' or ${column.attrType} == 'Float' or ${column.attrType} == 'Double' or ${column.attrType} == 'BigDecimal')
+@NotNull(message = "${column.comments}不能为空")
+	#end
+	#if(${column.attrType} == 'String')
+@NotBlank(message="${column.comments}不能为空")
+	#end
+#end
+#if(${column.characterMaximumLength} > 0)
+@Length(max = ${column.characterMaximumLength},message = "${column.comments}最大${column.characterMaximumLength}个字符")
+#end
+	@ApiModelProperty(value = "${column.comments}")
+	private $column.attrType $column.attrname;
+#end
+
+#foreach ($column in $columns)
+	/**
+	 * 设置：${column.comments}
+	 */
+	public void set${column.attrName}($column.attrType $column.attrname) {
+		this.$column.attrname = $column.attrname;
+	}
+	/**
+	 * 获取：${column.comments}
+	 */
+	public $column.attrType get${column.attrName}() {
+		return $column.attrname;
+	}
+#end
+}

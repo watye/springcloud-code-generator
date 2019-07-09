@@ -1,0 +1,83 @@
+package ${package}.web.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.github.pagehelper.PageInfo;
+import com.talelife.framework.entity.Page;
+import com.talelife.framework.entity.PageQueryParameter;
+import com.talelife.framework.entity.ResponseEntity;
+import com.talelife.framework.util.BeanUtils;
+import com.talelife.framework.controller.BaseController;
+import ${package}.web.dto.${className}Dto;
+import ${package}.dao.entity.${className};
+import ${package}.web.service.${className}WebService;
+import ${package}.web.vo.${className}Add;
+import ${package}.web.vo.${className}Query;
+import ${package}.web.vo.${className}Update;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+/**
+ * ${comments}
+ * @author lwy
+ *
+ */
+@Api(value="controller")
+@RestController
+@RequestMapping("/web/${classname}")
+public class ${className}WebController extends BaseController {
+	@Resource
+	private ${className}WebService ${classname}WebService;
+
+	@ApiOperation(value = "分页查询")
+	@GetMapping(value = "/page")
+	public ResponseEntity<Page<${className}Dto>> page(@Validated PageQueryParameter<${className}Query> pageQuery) {
+		${className} ${classname} = BeanUtils.map(pageQuery.getQuery(), ${className}.class);
+		PageInfo<${className}> page = ${classname}WebService.findListPage(${classname},pageQuery.getPageNum(), pageQuery.getPageSize());
+		List<${className}Dto> ${classname}List = BeanUtils.mapAsList(page.getList(), ${className}.class, ${className}Dto.class);
+		return ResponseEntity.ok(new Page<${className}Dto>(page,${classname}List));
+	}
+
+	@ApiOperation(value = "查询单个")
+	@GetMapping(value="/{id}")
+	public ResponseEntity<${className}Dto> get${className}(@PathVariable @ApiParam(value="用户id") Long id) {
+		${className} ${classname} = ${classname}WebService.getById(id);
+		return ResponseEntity.ok(BeanUtils.map(${classname}, ${className}Dto.class));
+	}
+
+	@ApiOperation(value = "新增")
+	@PostMapping(value="/add")
+	public ResponseEntity<Object> add(@Validated ${className}Add ${classname}Add) {
+		${classname}WebService.save(BeanUtils.map(${classname}Add,${className}.class));
+		return ResponseEntity.ok();
+	}
+
+	@ApiOperation(value = "修改")
+	@PutMapping(value="/{id}")
+	public ResponseEntity<Object> update(@PathVariable Long id,${className}Update ${classname}Update) {
+		${classname}WebService.updateById(BeanUtils.map(${classname}Update,${className}.class));
+		return ResponseEntity.ok();
+	}
+	
+	@ApiOperation(value = "删除")
+	@DeleteMapping(value="/{id}")
+	public ResponseEntity<Object> delete(@PathVariable @ApiParam(value="id") Long id) {
+		${classname}WebService.deleteById(id);
+		return ResponseEntity.ok();
+	}
+
+}

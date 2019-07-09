@@ -1,0 +1,17 @@
+package ${package}.dao;
+
+import com.talelife.framework.mapper.CrudMapper;
+import org.apache.ibatis.annotations.Mapper;
+import ${package}.dao.entity.${className};
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@Mapper
+public interface ${className}Mapper extends CrudMapper<${className}> {
+	
+}

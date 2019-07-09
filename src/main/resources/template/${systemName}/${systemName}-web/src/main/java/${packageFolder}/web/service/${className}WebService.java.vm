@@ -1,0 +1,8 @@
+package ${package}.web.service;
+
+import ${package}.dao.entity.${className};
+import com.talelife.framework.service.CrudService;
+
+public interface ${className}WebService extends CrudService<${className}>{
+}
+

@@ -1,0 +1,8 @@
+security:
+  basic:
+    enabled: false # 禁用身份认证
+spring:
+  application:
+    name: talelife-generator
+  profiles:
+    active: dev

@@ -1,0 +1,27 @@
+# Tomcat
+server:
+    tomcat:
+        uri-encoding: UTF-8
+        max-threads: 1000
+        min-spare-threads: 30
+    port: 3333
+    servlet:
+        context-path: /generator
+
+# mysql
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://172.31.118.22:3306/estate-cloud-platform?useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: admin@dev
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    resources:
+            static-locations: classpath:/static/,classpath:/views/
+
+# Mybatis配置
+mybatis:
+    mapperLocations: classpath:mapper/**/*.xml

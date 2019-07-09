@@ -1,0 +1,44 @@
+server:
+  port: ${port}
+spring:
+  application:
+    name: ${systemName}-web
+  cloud:
+    config:
+      fail-fast: false
+      #开发环境使用uri配置，主要是端口问题，用nginx转发的端口
+      uri: http://config.talelife.com
+      #生产环境开启这种配置方式enabled: true
+      discovery:
+        service-id: springcloud-config
+        enabled: false
+      profile: ${spring.profiles.active}
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: dev
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+    instance-id: provider.talelife.com:${server.port}
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://eureka.talelife.com/eureka
+---
+spring:
+  profiles: prd
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+    instance-id: 172.31.118.91:${server.port}
+  client:
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

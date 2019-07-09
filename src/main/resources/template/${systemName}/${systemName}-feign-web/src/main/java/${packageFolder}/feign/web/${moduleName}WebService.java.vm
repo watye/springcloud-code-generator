@@ -1,0 +1,9 @@
+package ${package}.feign.web;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+import ${package}.feign.web.fallback.${moduleName}WebFallback;
+
+@FeignClient(name = "${systemName}-web", fallback = ${moduleName}WebFallback.class)
+public interface ${moduleName}WebService {
+}
