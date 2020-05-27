@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.talelife</groupId>
   <artifactId>${systemName}-dao</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>v1.0.0</version>
   <packaging>jar</packaging>
   <name>${systemName}-dao</name>
   <url>http://www.talelife.com</url>
@@ -16,8 +16,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.talelife</groupId>
-			<artifactId>talelife-framework</artifactId>
-			<version>1.0</version>
+			<artifactId>springcloud-framework-core</artifactId>
+			<version>v1.0.0</version>
 		</dependency>
 	</dependencies>
 	

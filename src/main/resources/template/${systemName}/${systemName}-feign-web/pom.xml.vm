@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.talelife</groupId>
 	<artifactId>${systemName}-feign-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>v1.0.0</version>
 	<packaging>jar</packaging>
 	<name>${systemName}-feign-web</name>
 	<url>http://www.talelife.com</url>
